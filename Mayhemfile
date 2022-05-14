@@ -1,0 +1,5 @@
+project: imgcat
+target: imgcat
+
+cmds:
+  - cmd: /imgcat @@ out
