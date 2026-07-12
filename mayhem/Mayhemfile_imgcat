@@ -1,0 +1,12 @@
+# imgcat — in-process libFuzzer harness over the CLI's decode+render path
+# (print_image -> load_image (CImg + libpng/libjpeg) -> rgbtree colour quantisation).
+# The old black-box CLI target (`imgcat @@ out`) was uninstrumented (0 edges) and wrote an
+# absolute output path; converted to a libFuzzer harness over the same code path.
+project: imgcat
+target: imgcat
+cmds:
+  - cmd: /mayhem/imgcat-fuzz
+    libfuzzer: true
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/imgcat/testsuite
